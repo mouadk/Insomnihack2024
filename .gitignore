@@ -1,9 +1,6 @@
 # IDEA
 *.idea
 
-#Contrast RASP
-contrast-rasp/
-
 # Compiled class file
 *.class
 

@@ -13,13 +13,13 @@ public class RASPClassTransformer implements ClassFileTransformer {
 
         @Override
         public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) {
-            if (!List.of("org/springframework/expression/spel/standard/SpelExpressionParser", "java/lang/ProcessImpl").contains(className)) {
+            if (!List.of("org/springframework/expression/spel/standard/SpelExpressionParser", "java/lang/ProcessImpl",  "java/lang/UNIXProcess").contains(className)) {
                 return null;
             }
             System.out.println("Class is being loaded by the JVM, it will transformed to include RASP probes : " + className);
             ClassReader reader = new ClassReader(classfileBuffer);
             ClassWriter writer = new ClassWriter(reader, ClassWriter.COMPUTE_FRAMES | ClassWriter.COMPUTE_MAXS);
-            if(className.equals("java/lang/ProcessImpl")){
+            if(className.equals("java/lang/ProcessImpl") || className.equals("java/lang/UNIXProcess")){
                 reader.accept(new ProcessImplMethodVisitor(writer), ClassReader.EXPAND_FRAMES);
             } else {
                 reader.accept(new SpelExpressionParserMethodVisitor(writer), ClassReader.EXPAND_FRAMES);

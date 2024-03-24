@@ -12,7 +12,6 @@ public class ProcessImplCheck {
 
     static public void check(byte[] command){
         String command0 = new String(command, 0, command.length - 1);
-        System.out.println("command " + command0 + " , contained : " + blockedCommands.contains(command0));
         if(blockedCommands.contains(command0)){
             throw new RASPSecurityException("Commands :" + command0 +" has been blocked by RASP");
         }

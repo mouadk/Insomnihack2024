@@ -1,3 +1,4 @@
 # RASP Agent
-run mvn clean install 
+- In order to build the agent run:
+    `mvn clean install`
 
