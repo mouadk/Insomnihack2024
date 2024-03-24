@@ -16,7 +16,7 @@ This PoC shows how one can use it to bypass a RASP agent implementing guards in 
 Some RASP agents does not take into account that an attacker could invoke private methods through reflection. And this can be used 
 to bypass hooks added by RASP. 
 
-## Bypass by uploading native library 
+## Bypass using JNI/Library injection
 
 An attacker can disable RASP by repatching the RASP patched classes using JVMTI interface directly from native code. This can be done 
 by first uploading a native library and then load it. 
