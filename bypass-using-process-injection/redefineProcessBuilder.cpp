@@ -27,7 +27,7 @@ init() {
     pthread_t tid;
     int err = pthread_create(&tid, NULL, &library_init, NULL);
     if (err != 0) {
-        std::cerr << "Oula Failed to create a thread: " << strerror(err) << std::endl;
+        std::cerr << "failed to create a thread: " << strerror(err) << std::endl;
     }
 }
 
@@ -37,7 +37,7 @@ void* library_init(void* arg) {
     jvmtiEnv *jvmti;
 
     jint result = JNI_GetCreatedJavaVMs(vmBuf, 1, &numVMs);
-    std::cout << "Number of JVMs found : " << numVMs << std::endl;
+    std::cout << "nb of JVMs found :" << numVMs << std::endl;
 
     if (result == JNI_OK && numVMs > 0) {
         JavaVM *jvm = vmBuf[0];
@@ -48,7 +48,7 @@ void* library_init(void* arg) {
         jint attachResult = jvm->AttachCurrentThread(reinterpret_cast<void **>(&env), nullptr);
 
         if (attachResult == JNI_OK) {
-            printf("JVM attached yay hehe \n");
+           std::cout << "successfully attached to the jvm." << std::endl;
             jvm->GetEnv((void **) &jvmti, JVMTI_VERSION_1_1);
             jvmtiCapabilities capabilities;
             memset(&capabilities, 0, sizeof(capabilities));
@@ -56,19 +56,18 @@ void* library_init(void* arg) {
             jvmti->AddCapabilities(&capabilities);
             jclass clazz = env->FindClass(targetClassName);
             if (clazz == nullptr) {
-                std::cerr << "Failed to find the class: " << std::endl;
+                std::cerr << "failed to find the class: " << std::endl;
                 jvm->DetachCurrentThread();
             }
             jvmtiClassDefinition classDef;
             classDef.klass = clazz;
             classDef.class_byte_count = length;
             classDef.class_bytes = classBytes;
-            std::cerr << "hijacked. " << std::endl;
             jvmtiError err = jvmti->RedefineClasses(1, &classDef);
             if (err != JVMTI_ERROR_NONE) {
                 char *errName = nullptr;
                 jvmti->GetErrorName(err, &errName);
-                std::cerr << "Failed to redefine the class. JVMTI Error Code: " << err;
+                std::cerr << "failed to redefine the class. JVMTI Error Code: " << err;
                 if (errName != nullptr) {
                     std::cerr << " (" << errName << ")";
                     jvmti->Deallocate((unsigned char *) errName);
@@ -77,19 +76,21 @@ void* library_init(void* arg) {
             }
             jvm->DetachCurrentThread();
         } else {
-            std::cerr << "Failed to attach thread to JVM. Error code: " << attachResult << std::endl;
+            std::cerr << "failed to attach thread to jvm. error code: " << attachResult << std::endl;
             switch (attachResult) {
                 case JNI_EDETACHED:
-                    std::cerr << "Thread not attached to the JVM." << std::endl;
+                    std::cerr << "thread not attached to the JVM." << std::endl;
                     break;
                 case JNI_EVERSION:
-                    std::cerr << "JVM version error." << std::endl;
+                    std::cerr << "jvm version error." << std::endl;
                     break;
                 default:
-                    std::cerr << "Unknown error occurred." << std::endl;
+                    std::cerr << "unknown error occurred." << std::endl;
             }
         }
     } else {
-        std::cerr << "MMMhh No JVMs found :/" << std::endl;
+        std::cerr << "no jvm found, probably version issue." << std::endl;
     }
+    return nullptr;
 }
+

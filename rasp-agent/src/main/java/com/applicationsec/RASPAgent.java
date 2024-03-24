@@ -12,8 +12,13 @@ public class RASPAgent {
     }
 
     public static void initialize(Instrumentation inst) throws IOException {
-        var dir = System.getProperty("user.dir");
-        JarFile file = new JarFile(dir + "/bypass-using-jshell-api/rasp-agent/target/rasp-agent-1.0.0-SNAPSHOT.jar");
+        String envVarName = "RASP_AGENT_PATH";
+        String jarFilePath = System.getenv(envVarName);
+        if (jarFilePath == null) {
+            System.err.println("Environment variable '" + envVarName + "' is not set.");
+            return;
+        }
+        JarFile file = new JarFile(jarFilePath);
         inst.appendToBootstrapClassLoaderSearch(file);
     }
 
