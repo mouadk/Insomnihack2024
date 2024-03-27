@@ -1,10 +1,11 @@
 # Insomnihack2024
 
-This repository holds Demonstrations for Insomnihack2024 conference, Hijacking the JVM and bypassing RASP.  
+This repository holds demos for Insomnihack2024 conference, Hijacking the JVM and bypassing RASP.  
 
 ## rasp-agent
 I've implemented a basic, naive RASP agent to demonstrate bypass techniques. 
-Please do not regard it as a guide for implementing RASP. It was primarily used for demonstration purposes.
+Please do not regard it as a guide for implementing RASP. It was primarily used for demonstration purposes. 
+Don't use it in production!.
 
 ## Bypass using Unsafe API 
 
@@ -23,7 +24,7 @@ by first uploading a native library and then load it.
 
 ## Bypass using Process injection
 
-An attacker with enough capabilities can inject a shared library in a java process and use JVMTI interface to remove repatch the patch.
+An attacker with enough capabilities can inject a shared library in a java process and use JVMTI interface to remove the patch.
 
 ## Bypass using JVM Escape
 
