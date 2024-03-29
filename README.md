@@ -1,6 +1,6 @@
 # Insomnihack2024
 
-This repository houses demos for Insomnihack2024 conference: Hijacking the JVM and bypassing RASP.  
+This repository houses demos for Insomnihack2024 conference: Hijacking the JVM and bypassing RASP [https://insomnihack.ch/talks-2024/#R7W9JV].  
 
 ## Rasp Agent
 I've implemented a basic, naive RASP agent to demonstrate bypass techniques. 
