@@ -3,7 +3,7 @@
 This repository houses demos for Insomnihack2024 conference: Hijacking the JVM and bypassing RASP [https://insomnihack.ch/talks-2024/#R7W9JV].  
 
 ## Rasp Agent
-I've implemented a basic, naive RASP agent to demonstrate bypass techniques. 
+I've implemented a basic, naive RASP agent [rasp-agent](rasp-agent) to demonstrate bypass techniques. 
 Please do not regard it as a guide for implementing RASP. It was primarily used for demonstration purposes. 
 Don't use it in production!.
 
