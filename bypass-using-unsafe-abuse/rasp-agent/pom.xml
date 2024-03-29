@@ -30,12 +30,6 @@
       <version>9.3</version>
     </dependency>
 
-    <dependency>
-      <groupId>io.quarkus.gizmo</groupId>
-      <artifactId>gizmo</artifactId>
-      <version>1.7.0</version>
-    </dependency>
-
   </dependencies>
   <build>
     <plugins>
