@@ -5,12 +5,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 
 
 @SpringBootApplication
-open class Application0 {
+open class BypassUsingProcessInjection {
   companion object {
 
     @JvmStatic
     fun main(args: Array<String>) {
-      SpringApplication.run(Application0::class.java, *args)
+      SpringApplication.run(BypassUsingProcessInjection::class.java, *args)
     }
   }
 

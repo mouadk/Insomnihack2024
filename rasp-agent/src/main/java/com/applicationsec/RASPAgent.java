@@ -2,6 +2,7 @@ package com.applicationsec;
 
 import java.io.IOException;
 import java.lang.instrument.Instrumentation;
+import java.net.URL;
 import java.util.jar.JarFile;
 
 public class RASPAgent {
@@ -12,12 +13,7 @@ public class RASPAgent {
     }
 
     public static void initialize(Instrumentation inst) throws IOException {
-        String envVarName = "RASP_AGENT_PATH";
-        String jarFilePath = System.getenv(envVarName);
-        if (jarFilePath == null) {
-            System.err.println("Environment variable '" + envVarName + "' is not set.");
-            return;
-        }
+        String jarFilePath = RASPAgent.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         JarFile file = new JarFile(jarFilePath);
         inst.appendToBootstrapClassLoaderSearch(file);
     }

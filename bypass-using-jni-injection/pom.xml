@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.applicationsec</groupId>
-    <artifactId>springcloud-spel-injection</artifactId>
+    <artifactId>springcloud-spel-injection-bypass-using-jni</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
     <parent>

@@ -4,8 +4,8 @@ global variable and navigate the memory space until we reach the Instrumentation
 We do it step by step to avoid being detected (it looks like when the request parameter exceeds a certain treshold, we get blocked by the agent):
 1. mvn clean package
 2. cd ..
-3. docker build . -t cve-2022-22965-exploit-memory-abuse -f bypassing-using-memory-abuse/Dockerfile
-4. docker run -p 8080:8080 -p 8000:8000 cve-2022-22965-exploit-memory-abuse
+3. docker build . -t cve-2022-22965-bypass-with-memory-abuse -f bypass-using-memory-abuse/Dockerfile
+4. docker run -p 8080:8080 -p 8000:8000 cve-2022-22965-bypass-with-memory-abuse
 5. curl http://localhost:8080/exploit/greeting
 6. python3 -m pip install -r requirements.txt 
 7. Finally deploy your exploit that should have been blocked normally:
