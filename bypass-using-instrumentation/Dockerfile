@@ -1,6 +1,6 @@
 FROM tomcat:9.0.59-jdk11
 # Tomcat 9.0.62 has been hardened
-COPY bypass-using-memory-abuse/target/exploit.war /usr/local/tomcat/webapps/
+COPY bypass-using-instrumentation/target/exploit.war /usr/local/tomcat/webapps/
 
 RUN mkdir -p /opt/agent
 COPY rasp-agent/target/rasp-agent-1.0.0-SNAPSHOT.jar /opt/agent/

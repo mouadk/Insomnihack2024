@@ -1,6 +1,6 @@
 1. mvn clean package
 2. docker build . -t cve-2022-22965-exploit-bypass-using-unsafe
-4. docker run -p 8080:8080 docker build . -t cve-2022-22965-exploit-bypass-using-unsafe
+4. docker run -p 8080:8080 -t cve-2022-22965-exploit-bypass-using-unsafe
 5. curl http://localhost:8080/exploit/greeting
 6. python3 -m pip install -r requirements.txt
 7. python3 exploit.py --url="http://localhost:8080/exploit/greeting" --dir="webapps/ROOT" --file="reflection"

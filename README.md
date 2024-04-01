@@ -30,9 +30,9 @@ An attacker with enough capabilities can inject a shared library [bypass-using-p
 
 An attacker can use gadgets to execute code outside the JVM, e.g. using Jshell API [bypass-using-jvm-escape](bypass-using-jvm-escape) which start a child local JVM and execute user code there. 
 
-## Bypass using Memory Abuse
+## Bypass using Instrumentation
 
-The PoC [bypass-using-memory-abuse](bypass-using-memory-abuse) shows how an attacker can load objects from native memory using unsafe API, and load Instrumentation object to patch key classes.
+The PoC [bypass-using-instrumentation](bypass-using-instrumentation) shows how an attacker can load objects from memory using unsafe API, and load Instrumentation object to patch key classes.
 
 
 
