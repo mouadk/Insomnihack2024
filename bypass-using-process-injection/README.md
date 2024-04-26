@@ -19,5 +19,5 @@ Inject it in the target process
 - ./injector -java -p $pid path/to/redefineProcessBuilder.dylib
 - Look at the spring app logs, and confirm that the injection succeeded
   ![attached.png](attached.png)
-- now rerun the exploit[exploit.sh](exploit.sh), you should have bypassed rasp
+- now rerun the [exploit.sh](exploit.sh), you should have bypassed rasp
   ![bypassed.png](bypassed.png)
